@@ -1,0 +1,369 @@
+{
+  "name": "zovo-plist-editor",
+  "displayName": "Plist Viewer & Editor (Binary)",
+  "description": "Plist editor and viewer for binary, XML and OpenStep plists: an Xcode-style tree to add, delete, reorder and retype keys, saved in the format the file came in. Reads Info.plist, entitlements and provisioning profiles. Offline, no plutil needed.",
+  "version": "0.1.1",
+  "publisher": "zovo",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1E2A3A",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/plist-editor-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/theluckystrike/plist-editor-vscode/issues"
+  },
+  "homepage": "https://github.com/theluckystrike/plist-editor-vscode#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "plist",
+    "binary plist",
+    "plist editor",
+    "macos",
+    "ios"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onUri"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "Compare with the git HEAD version needs a trusted folder. Viewing and editing plists works everywhere."
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "plistEditor.editor",
+        "displayName": "Plist Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.plist"
+          },
+          {
+            "filenamePattern": "*.entitlements"
+          },
+          {
+            "filenamePattern": "*.mobileprovision"
+          },
+          {
+            "filenamePattern": "*.provisionprofile"
+          },
+          {
+            "filenamePattern": "*.xcprivacy"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "plistEditor.showXml",
+        "title": "Show as XML",
+        "category": "Plist Editor",
+        "icon": "$(code)"
+      },
+      {
+        "command": "plistEditor.openAsText",
+        "title": "Open as Text",
+        "category": "Plist Editor",
+        "icon": "$(file-text)"
+      },
+      {
+        "command": "plistEditor.saveCopyAs",
+        "title": "Save a Copy As XML, Binary or JSON...",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.openWithEditor",
+        "title": "Open in Plist Editor",
+        "category": "Plist Editor",
+        "icon": "$(list-tree)"
+      },
+      {
+        "command": "plistEditor.find",
+        "title": "Filter Keys and Values",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.openSample",
+        "title": "Open the Sample Info.plist",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.openBinarySample",
+        "title": "Open the Sample Binary Plist",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.openWalkthrough",
+        "title": "Get Started",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.moreViewers",
+        "title": "More free tools by Zovo",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.supportDeveloper",
+        "title": "Support the developer",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.compare",
+        "title": "Compare Two Plists (Pro)",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.batchConvert",
+        "title": "Batch Convert a Folder of Plists (Pro)",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.check",
+        "title": "Check Info.plist, Entitlements or Profile (Pro)",
+        "category": "Plist Editor"
+      },
+      {
+        "command": "plistEditor.zovoPro.compare",
+        "title": "Zovo Pro: Compare two plists"
+      },
+      {
+        "command": "plistEditor.zovoPro.convert",
+        "title": "Zovo Pro: Batch convert a folder"
+      },
+      {
+        "command": "plistEditor.zovoPro.check",
+        "title": "Zovo Pro: Check Info.plist and profiles"
+      },
+      {
+        "command": "plistEditor.getPro",
+        "title": "Get Zovo Pro (USD 19 once, all Zovo extensions)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "plistEditor.payWithPayPal",
+        "title": "Pay for Zovo Pro with PayPal (USD 19, team of 5 USD 59)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "plistEditor.unlockWithSponsors",
+        "title": "I already paid: unlock with GitHub Sponsors",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "plistEditor.enterLicenseKey",
+        "title": "Enter Zovo Pro license key",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "plistEditor.removeLicense",
+        "title": "Remove Zovo Pro from this editor",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "plistEditor.payByCard",
+        "title": "Pay for Zovo Pro by card (USD 19)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "plistEditor.enterKey",
+        "title": "Enter a key",
+        "category": "Zovo Pro"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "plistEditor.find",
+        "key": "ctrl+f",
+        "mac": "cmd+f",
+        "when": "activeCustomEditorId == 'plistEditor.editor'"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "plistEditor.showXml",
+          "when": "activeCustomEditorId == 'plistEditor.editor'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "plistEditor.openAsText",
+          "when": "activeCustomEditorId == 'plistEditor.editor'",
+          "group": "1_plist@1"
+        },
+        {
+          "command": "plistEditor.saveCopyAs",
+          "when": "activeCustomEditorId == 'plistEditor.editor'",
+          "group": "1_plist@2"
+        },
+        {
+          "command": "plistEditor.openWithEditor",
+          "when": "resourceExtname =~ /^\\.(plist|entitlements|mobileprovision|provisionprofile|xcprivacy)$/i && activeEditor == workbench.editors.files.textFileEditor",
+          "group": "navigation@1"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "plistEditor.openWithEditor",
+          "when": "resourceExtname =~ /^\\.(plist|entitlements|mobileprovision|provisionprofile|xcprivacy)$/i && !explorerResourceIsFolder",
+          "group": "navigation@9"
+        },
+        {
+          "command": "plistEditor.saveCopyAs",
+          "when": "resourceExtname =~ /^\\.(plist|entitlements|mobileprovision|provisionprofile|xcprivacy)$/i && !explorerResourceIsFolder",
+          "group": "7_plist@1"
+        },
+        {
+          "command": "plistEditor.zovoPro.compare",
+          "when": "resourceExtname =~ /^\\.(plist|entitlements|mobileprovision|provisionprofile|xcprivacy)$/i && !explorerResourceIsFolder && config.plistEditor.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "plistEditor.zovoPro.check",
+          "when": "resourceExtname =~ /^\\.(plist|entitlements|mobileprovision|provisionprofile|xcprivacy)$/i && !explorerResourceIsFolder && config.plistEditor.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "plistEditor.zovoPro.convert",
+          "when": "explorerResourceIsFolder && config.plistEditor.showProTools",
+          "group": "zovoPro@3"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "plistEditor.find",
+          "when": "activeCustomEditorId == 'plistEditor.editor'"
+        },
+        {
+          "command": "plistEditor.openAsText",
+          "when": "activeCustomEditorId == 'plistEditor.editor'"
+        },
+        {
+          "command": "plistEditor.compare",
+          "when": "config.plistEditor.showProTools"
+        },
+        {
+          "command": "plistEditor.batchConvert",
+          "when": "config.plistEditor.showProTools"
+        },
+        {
+          "command": "plistEditor.check",
+          "when": "config.plistEditor.showProTools"
+        },
+        {
+          "command": "plistEditor.zovoPro.compare",
+          "when": "false"
+        },
+        {
+          "command": "plistEditor.zovoPro.convert",
+          "when": "false"
+        },
+        {
+          "command": "plistEditor.zovoPro.check",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Plist Editor",
+      "properties": {
+        "plistEditor.showKeyNames": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the readable name of known Info.plist, entitlements and profile keys next to the key, in grey (for example \"Bundle identifier\" next to CFBundleIdentifier)."
+        },
+        "plistEditor.maxFileSizeMB": {
+          "type": "number",
+          "default": 100,
+          "minimum": 1,
+          "description": "Files larger than this open with a message instead of the tree, so VS Code stays responsive."
+        },
+        "plistEditor.showProTools": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Zovo Pro tools (compare, batch convert, check) in the Command Palette, the Explorer menu and the editor toolbar. Everything free stays visible."
+        },
+        "plistEditor.askForRating": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask once for a Marketplace rating after plists opened without an error on two occasions at least 30 minutes apart. \"Later\" asks one more time after 7 days, \"No thanks\" never asks again. Nothing is sent anywhere."
+        },
+        "plistEditor.showSupportLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the small Rate, More free tools and Zovo Pro links at the bottom of the editor. Nothing is sent anywhere."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "plistEditor.start",
+        "title": "Get started with Plist Editor",
+        "description": "Edit binary and XML plists as a tree, right in VS Code.",
+        "steps": [
+          {
+            "id": "open",
+            "title": "Open a plist",
+            "description": "Click any .plist, .entitlements or .mobileprovision file. Binary and XML plists open as a Key, Type and Value tree.\n[Open the sample Info.plist](command:plistEditor.openSample)",
+            "media": {
+              "image": "images/screenshot.png",
+              "altText": "An Info.plist open as a tree in VS Code, with key names, types and values."
+            },
+            "completionEvents": [
+              "onCommand:plistEditor.openSample"
+            ]
+          },
+          {
+            "id": "edit",
+            "title": "Edit like in Xcode",
+            "description": "Double-click a key or value to change it, click the type to change it, use + and - to add or delete. Alt+Up and Alt+Down move a row. Undo and redo work as in any file.",
+            "media": {
+              "markdown": "walkthrough/edit.md"
+            }
+          },
+          {
+            "id": "binary",
+            "title": "Binary stays binary",
+            "description": "A binary plist is saved back as binary, an XML plist as XML with its own indent. Show XML puts a readable copy next to the tree.\n[Open the sample binary plist](command:plistEditor.openBinarySample)",
+            "media": {
+              "markdown": "walkthrough/binary.md"
+            },
+            "completionEvents": [
+              "onCommand:plistEditor.openBinarySample"
+            ]
+          },
+          {
+            "id": "zovo-related",
+            "title": "Files that often come with plist files",
+            "description": "If your project also has binary files or SVN working copies, these free Zovo extensions work with them. A link opens the extension page, and you choose there whether to install it.\n[Hex Viewer](command:extension.open?%5B%22zovo.zovo-hex-viewer%22%5D)\n[SVN Client](command:extension.open?%5B%22zovo.zovo-svn-client%22%5D)",
+            "media": {
+              "markdown": "walkthrough/related.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node scripts/test.js",
+    "package": "npx -y @vscode/vsce@3 package --no-dependencies"
+  },
+  "devDependencies": {},
+  "sponsor": {
+    "url": "https://github.com/sponsors/theluckystrike/sponsorships?tier_id=679878"
+  }
+}
